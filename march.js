@@ -33,15 +33,18 @@ n is even.
 
 var distributeCandies = function (candyType) {
   let allowed = Math.floor(candyType.length / 2);
-  let types = {};
+  // let types = {};
 
-  for (let i = 0; i < candyType.length; i++) {
-    types[candyType[i]]
-      ? (types[candyType[i]] += 1)
-      : (types[candyType[i]] = 1);
-  }
+  // for (let i = 0; i < candyType.length; i++) {
+  //   types[candyType[i]]
+  //     ? (types[candyType[i]] += 1)
+  //     : (types[candyType[i]] = 1);
+  // }
 
-  return Math.min(Object.keys(types).length, allowed);
+  // return Math.min(Object.keys(types).length, allowed);
+
+  let types = new Set(candyType); // returns Set(3) { 1, 2, 3 } for first input
+  return Math.min(types.size, allowed); // By using Set and Set prototype.size I can get number of unique values. Which is simpler compare to my original answer
 };
 
 console.log(distributeCandies([1, 1, 2, 2, 3, 3]));
