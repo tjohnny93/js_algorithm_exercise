@@ -1,6 +1,6 @@
 /*
 
-March 16, 2021
+March 16, 2021  #1
 
 Alice has n candies, where the ith candy is of type candyType[i]. Alice noticed that she started to gain weight, so she visited a doctor.
 The doctor advised Alice to only eat n / 2 of the candies she has (n is always even). Alice likes her candies very much,
@@ -47,6 +47,52 @@ var distributeCandies = function (candyType) {
   return Math.min(types.size, allowed); // By using Set and Set prototype.size I can get number of unique values. Which is simpler compare to my original answer
 };
 
-console.log(distributeCandies([1, 1, 2, 2, 3, 3]));
-console.log(distributeCandies([1, 1, 2, 3]));
-console.log(distributeCandies([6, 6, 6, 6]));
+// console.log(distributeCandies([1, 1, 2, 2, 3, 3]));
+// console.log(distributeCandies([1, 1, 2, 3]));
+// console.log(distributeCandies([6, 6, 6, 6]));
+
+/*
+
+March 17, 2021  #2
+
+You have a set of integers s, which originally contains all the numbers from 1 to n. Unfortunately,
+
+due to some error, one of the numbers in s got duplicated to another number in the set,
+
+which results in repetition of one number and loss of another number.
+
+You are given an integer array nums representing the data status of this set after the error.
+
+Find the number that occurs twice and the number that is missing and return them in the form of an array.
+
+Example 1:
+
+Input: nums = [1,2,2,4]
+Output: [2,3]
+
+Example 2:
+
+Input: nums = [1,1]
+Output: [1,2]
+
+*/
+
+var findErrorNums = function (nums) {
+  // my approach
+  let numCount = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    numCount[nums[i]] ? (numCount[nums[i]] += 1) : (numCount[nums[i]] = 1);
+  }
+
+  let numEntries = Object.entries(numCount);
+
+  for (let i = 0; i < numEntries.length; i++) {
+    if (numEntries[i][1] === 2) {
+      return [parseInt(numEntries[i]), parseInt(numEntries[i]) + 1];
+    }
+  }
+};
+
+console.log(findErrorNums([1, 2, 2, 4]));
+console.log(findErrorNums([1, 1]));
