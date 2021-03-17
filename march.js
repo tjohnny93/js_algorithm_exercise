@@ -78,21 +78,43 @@ Output: [1,2]
 */
 
 var findErrorNums = function (nums) {
-  // my approach
-  let numCount = {};
+  // my approach +edit: my approach was wrong since I only cared about sample case and would not pass more complex sample
+  // let numCount = {};
 
-  for (let i = 0; i < nums.length; i++) {
-    numCount[nums[i]] ? (numCount[nums[i]] += 1) : (numCount[nums[i]] = 1);
-  }
+  // for (let i = 0; i < nums.length; i++) {
+  //   numCount[nums[i]] ? (numCount[nums[i]] += 1) : (numCount[nums[i]] = 1);
+  // }
 
-  let numEntries = Object.entries(numCount);
+  // let numEntries = Object.entries(numCount);
 
-  for (let i = 0; i < numEntries.length; i++) {
-    if (numEntries[i][1] === 2) {
-      return [parseInt(numEntries[i]), parseInt(numEntries[i]) + 1];
+  // for (let i = 0; i < numEntries.length; i++) {
+  //   if (numEntries[i][1] === 2) {
+  //     return [parseInt(numEntries[i]), parseInt(numEntries[i]) + 1];
+  //   }
+  // }
+
+  // leet code discussion approach
+  let x, y;
+  let sum = 0;
+  let times = new Array(nums.length).fill(0); // for example 1 [0, 0, 0, 0]
+  for (let n of nums) {
+    sum += n; // sum of all int in nums array
+    times[n - 1]++;
+
+    if (times[n - 1] === 2) {
+      // conditional statement to check the duplicated int
+      x = n;
     }
   }
+  y = ((nums.length + 1) * nums.length) / 2 + x - sum;
+  // complex calculation.
+  // example 3 :  ((7+1) * 7) / 2 + 3 - 25 => 56/2 - 22 =>  28 - 22 => 6
+  // without an error sum of nums should be ((nums.length + 1) * nums.length) / 2
+  // then add duplicated int then subtract the actual sum of errored nums array to get the missing int
+
+  return [x, y];
 };
 
 console.log(findErrorNums([1, 2, 2, 4]));
 console.log(findErrorNums([1, 1]));
+console.log(findErrorNums([1, 2, 3, 3, 4, 5, 7]));
