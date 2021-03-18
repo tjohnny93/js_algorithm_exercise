@@ -151,13 +151,20 @@ Explanation: n = 1 since there is 1 number, so all numbers are in the range [0,1
 */
 
 const missingNumber = (nums) => {
-  let sum = 0,
-    total = 0;
+  // let sum = 0,
+  //   total = 0;
+  // for (let i = 0; i < nums.length; i++) {
+  //   sum += nums[i];
+  //   total += i + 1;
+  //   console.log(total-sum);
+  // }
+  // return total - sum;
+
+  let result = 0;
   for (let i = 0; i < nums.length; i++) {
-    sum += nums[i];
-    total += i + 1;
+    result = result + i + 1 - nums[i];
   }
-  return total - sum;
+  return result;
 };
 
 console.log(missingNumber([3, 0, 1]));
