@@ -19,6 +19,16 @@ Input: candyType = [6,6,6,6]
 Output: 1
 Explanation: Alice can only eat 4 / 2 = 2 candies. Even though she can eat 2 candies, she only has 1 type.
 
+Constraints:
+
+n == candyType.length
+2 <= n <= 104
+n is even.
+-105 <= candyType[i] <= 105
+
+@param {number[]} candyType
+@return {number}
+
 */
 
 var distributeCandies = function (candyType) {
@@ -157,41 +167,7 @@ const missingNumber = (nums) => {
   return result;
 };
 
-// console.log(missingNumber([3, 0, 1]));
-// console.log(missingNumber([0, 1]));
-// console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1]));
-// console.log(missingNumber([0]));
-
-/*
-March 19, 2021  #4
-
-There are N rooms and you start in room 0.  Each room has a distinct number in 0, 1, 2, ..., N-1, and each room may have some keys to access the next room. 
-
-Formally, each room i has a list of keys rooms[i], and each key rooms[i][j] is an integer in [0, 1, ..., N-1] where N = rooms.length.  A key rooms[i][j] = v opens the room with number v.
-
-Initially, all the rooms start locked (except for room 0). 
-
-You can walk back and forth between rooms freely.
-
-Return true if and only if you can enter every room.
-
-example #1 : Input: [[1],[2],[3],[]] / Output: true
-example #2 : Input: [[1,3],[3,0,1],[2],[0]] / Output: false
-
-*/
-
-var canVisitAllRooms = function (rooms) {
-  for (let i = 0; i < rooms.length; i++) {
-    for (let j = 0; j < rooms[i].length; j++) {
-      if (rooms[i].includes(i + 1)) {
-        i++;
-      } else {
-        return false;
-      }
-    }
-  }
-  return true;
-};
-
-console.log(canVisitAllRooms([[1], [2], [3], []]));
-console.log(canVisitAllRooms([[1, 3], [3, 0, 1], [2], [0]]));
+console.log(missingNumber([3, 0, 1]));
+console.log(missingNumber([0, 1]));
+console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1]));
+console.log(missingNumber([0]));
