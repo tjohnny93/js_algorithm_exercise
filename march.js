@@ -208,6 +208,33 @@ var runningSum = function (nums) {
   return result;
 };
 
-console.log(runningSum([1, 2, 3, 4]));
-console.log(runningSum([1, 1, 1, 1, 1]));
-console.log(runningSum([3, 1, 2, 10, 1]));
+// console.log(runningSum([1, 2, 3, 4]));
+// console.log(runningSum([1, 1, 1, 1, 1]));
+// console.log(runningSum([3, 1, 2, 10, 1]));
+
+/*
+
+March 20, 2021  #5
+
+Given a valid (IPv4) IP address, return a defanged version of that IP address.
+
+A defanged IP address replaces every period "." with "[.]".
+
+Example 1:
+
+Input: address = "1.1.1.1"
+Output: "1[.]1[.]1[.]1"
+Example 2:
+
+Input: address = "255.100.50.0"
+Output: "255[.]100[.]50[.]0"
+
+*/
+
+var defangIPaddr = function (address) {
+  let arr = address.split("");
+  return arr.map((char) => (char === "." ? "[.]" : char)).join("");
+};
+
+console.log(defangIPaddr("1.1.1.1"));
+console.log(defangIPaddr("255.100.50.0"));
