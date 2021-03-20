@@ -200,12 +200,18 @@ Output: [3,4,6,16,17]
 */
 
 var runningSum = function (nums) {
-  result = [];
-  nums.reduce((acc, cur) => {
-    result.push(acc + cur);
-    return acc + cur;
-  }, 0);
-  return result;
+  // let result = [];
+  // nums.reduce((acc, cur) => {
+  //   result.push(acc + cur);
+  //   return acc + cur;
+  // }, 0);
+  // return result;
+
+  let result = new Array(nums.length);
+  for (let i = 0; i < nums.length; i++) {
+    i === 0 ? (result[i] = nums[i]) : (result[i] = nums[i] + result[i - 1]);
+  }
+  return result; // faster
 };
 
 // console.log(runningSum([1, 2, 3, 4]));
