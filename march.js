@@ -368,6 +368,50 @@ var shuffle = function (nums, n) {
   return result;
 };
 
-console.log(shuffle([2, 5, 1, 3, 4, 7], 3));
-console.log(shuffle([1, 2, 3, 4, 4, 3, 2, 1], 4));
-console.log(shuffle([1, 1, 2, 2], 2));
+// console.log(shuffle([2, 5, 1, 3, 4, 7], 3));
+// console.log(shuffle([1, 2, 3, 4, 4, 3, 2, 1], 4));
+// console.log(shuffle([1, 1, 2, 2], 2));
+
+/*
+
+March 22, 2021  #7
+
+Given an array of integers nums.
+
+A pair (i,j) is called good if nums[i] == nums[j] and i < j.
+
+Return the number of good pairs.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3,1,1,3]
+Output: 4
+Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+Example 2:
+
+Input: nums = [1,1,1,1]
+Output: 6
+Explanation: Each pair in the array are good.
+Example 3:
+
+Input: nums = [1,2,3]
+Output: 0
+
+
+*/
+
+var numIdenticalPairs = function (nums) {
+  let count = 0;
+  for (let i = 0; i < nums.length - 1; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] === nums[j]) count += 1;
+    }
+  }
+  return count;
+};
+
+console.log(numIdenticalPairs([1, 2, 3, 1, 1, 3]));
+console.log(numIdenticalPairs([1, 1, 1, 1]));
+console.log(numIdenticalPairs([1, 2, 3]));
