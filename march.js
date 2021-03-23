@@ -477,15 +477,58 @@ Output: [0,0,0,0]
 */
 
 var smallerNumbersThanCurrent = function (nums) {
-  let result = new Array(nums.length).fill(0);
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = 0; j < nums.length; j++) {
-      if (nums[i] > nums[j]) result[i] += 1;
-    }
-  }
-  return result;
+  // let result = new Array(nums.length).fill(0);
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = 0; j < nums.length; j++) {
+  //     if (nums[i] > nums[j]) result[i] += 1;
+  //   }
+  // }
+  // return result;
+
+  return nums.map(
+    (numA, i) =>
+      nums.reduce((total, numB, ii) => (numA > numB ? total + 1 : total), 0) // 1 line solve from discussion
+  );
 };
 
-console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3]));
-console.log(smallerNumbersThanCurrent([6, 5, 4, 8]));
-console.log(smallerNumbersThanCurrent([7, 7, 7, 7]));
+// console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3]));
+// console.log(smallerNumbersThanCurrent([6, 5, 4, 8]));
+// console.log(smallerNumbersThanCurrent([7, 7, 7, 7]));
+
+/*
+
+March 23 #8-2
+
+Given a non-negative integer num, return the number of steps to reduce it to zero. If the current number is even, you have to divide it by 2, otherwise, you have to subtract 1 from it.
+
+Example 1:
+
+Input: num = 14
+Output: 6
+
+Example 2:
+
+Input: num = 8
+Output: 4
+
+Example 3:
+
+Input: num = 123
+Output: 12
+
+*/
+
+var numberOfSteps = function (num) {
+  let count = 0;
+  const countSteps = (count, num) => {
+    if (num === 0) return count;
+    return num % 2 === 0
+      ? countSteps(count + 1, num / 2)
+      : countSteps(count + 1, num - 1);
+  };
+  return countSteps(count, num);
+};
+
+console.log(numberOfSteps(14));
+console.log(numberOfSteps(8));
+console.log(numberOfSteps(123));
