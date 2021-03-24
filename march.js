@@ -529,6 +529,52 @@ var numberOfSteps = function (num) {
   return countSteps(count, num);
 };
 
-console.log(numberOfSteps(14));
-console.log(numberOfSteps(8));
-console.log(numberOfSteps(123));
+// console.log(numberOfSteps(14));
+// console.log(numberOfSteps(8));
+// console.log(numberOfSteps(123));
+
+/*
+
+March 24 #9
+
+Given a string s and an integer array indices of the same length.
+
+The string s will be shuffled such that the character at the ith position moves to indices[i] in the shuffled string.
+
+Return the shuffled string.
+
+Input: s = "codeleet", indices = [4,5,6,7,0,2,1,3]
+Output: "leetcode"
+
+
+Input: s = "abc", indices = [0,1,2]
+Output: "abc"
+
+
+Input: s = "aiohn", indices = [3,1,4,2,0]
+Output: "nihao"
+
+Input: s = "aaiougrt", indices = [4,0,2,6,7,3,1,5]
+Output: "arigatou"
+
+Input: s = "art", indices = [1,0,2]
+Output: "rat"
+*/
+
+var restoreString = function (s, indices) {
+  const result = [];
+
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    let index = indices[i];
+    result[index] = char;
+  }
+
+  return result.join("");
+};
+
+console.log(restoreString("codeleet", [4, 5, 6, 7, 0, 2, 1, 3]));
+console.log(restoreString("abc", [0, 1, 2]));
+console.log(restoreString("aiohn", [3, 1, 4, 2, 0]));
+console.log(restoreString("aaiougrt", [4, 0, 2, 6, 7, 3, 1, 5]));
+console.log(restoreString("art", [1, 0, 2]));
