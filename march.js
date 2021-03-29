@@ -740,7 +740,7 @@ var interpret = function (command) {
   return result;
 };
 
-/* March 29 #13
+/* March 29 #13-1
 Given two arrays of integers nums and index. Your task is to create target array under the following rules:
 
 Initially target array is empty.
@@ -771,4 +771,37 @@ var createTargetArray = function (nums, index) {
     result.splice(index[i], 0, nums[i]);
   }
   return result;
+};
+
+/* March 29 #13-2
+Balanced strings are those that have an equal quantity of 'L' and 'R' characters.
+Given a balanced string s, split it in the maximum amount of balanced strings.
+Return the maximum amount of split balanced strings.
+
+Example 1:
+Input: s = "RLRRLLRLRL"
+Output: 4
+
+Example 2:
+Input: s = "RLLLLRRRLR"
+Output: 3
+
+Example 3:
+Input: s = "LLLLRRRR"
+Output: 1
+
+Example 4:
+Input: s = "RLRRRLLRLL"
+Output: 2
+*/
+
+var balancedStringSplit = function (s) {
+  let count = 0;
+  let match = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    s[i] === "R" ? (match += 1) : (match -= 1);
+    if (match === 0) count += 1;
+  }
+  return count;
 };
