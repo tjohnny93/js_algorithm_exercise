@@ -62,3 +62,40 @@ var arrayStringsAreEqual = function (word1, word2) {
   if (word1.join("") === word2.join("")) return true;
   return false;
 };
+
+/* April 2 #2
+Given an array of positive integers arr, calculate the sum of all possible odd-length subarrays.
+
+A subarray is a contiguous subsequence of the array.
+
+Return the sum of all odd-length subarrays of arr.
+
+Example 1:
+
+Input: arr = [1,4,2,5,3]
+Output: 58
+Explanation: The odd-length subarrays of arr and their sums are:
+
+Example 2:
+
+Input: arr = [1,2]
+Output: 3
+Explanation: There are only 2 subarrays of odd length, [1] and [2]. Their sum is 3.
+Example 3:
+
+Input: arr = [10,11,12]
+Output: 66
+
+*/
+
+var sumOddLengthSubarrays = function (arr) {
+  let result = 0;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i; j < arr.length + 1; j++) {
+      if ((j - i) % 2 !== 0) {
+        arr.slice(i, j).forEach((num) => (result += num));
+      }
+    }
+  }
+  return result;
+};
