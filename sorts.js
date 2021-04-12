@@ -53,6 +53,51 @@ const insertionSort = (nums) => {
   return nums;
 };
 
-console.log(insertionSort(arr));
+// console.log(insertionSort(arr));
 
 // RECAP: bubble, selection, and insertion are all fairly similar O(n^2), on Almost already sorted situation insertion O(n) > bubble O(n) > selection O(n^2);
+
+// O(n^2) to O(n log n)
+
+// mergeSort:
+
+// simple merge function for arr
+let sorted_1 = [1, 6, 9, 12];
+let sorted_2 = [2, 4, 8, 11, 13, 15];
+
+const merge = (arr1, arr2) => {
+  let result = [],
+    i = 0,
+    j = 0;
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] > arr2[j]) {
+      result.push(arr2[j]);
+      j++;
+    } else {
+      result.push(arr1[i]);
+      i++;
+    }
+  }
+  while (i !== arr1.length) {
+    result.push(arr1[i]);
+    i++;
+  }
+  while (j !== arr2.length) {
+    result.push(arr2[j]);
+    j++;
+  }
+  return result;
+};
+
+// console.log(merge(sorted_1, sorted_2));
+
+const mergeSort = (nums) => {
+  if (nums.length <= 1) return nums;
+  let mid = Math.floor(nums.length / 2);
+  let left = mergeSort(nums.slice(0, mid));
+  let right = mergeSort(nums.slice(mid));
+
+  return merge(left, right);
+};
+
+console.log(mergeSort(arr));
