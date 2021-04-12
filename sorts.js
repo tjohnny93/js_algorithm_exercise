@@ -1,3 +1,5 @@
+let arr = [1, 5, 6, 8, 7, 2, 3, 4];
+
 const bubbleSort = (nums) => {
   let sorted = true; // ++ optimization to skip unneceesary looping (after everything is sorted);
   for (let i = nums.length; i > 0; i--) {
@@ -14,4 +16,17 @@ const bubbleSort = (nums) => {
   return nums;
 };
 
-console.log(bubbleSort([1, 5, 6, 8, 7, 2, 3, 4]));
+// console.log(bubbleSort(arr));
+
+const selectionSort = (nums) => {
+  for (let i = 0; i < nums.length; i++) {
+    let lowest = i;
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[lowest] > nums[j]) lowest = j;
+    }
+    if (i !== lowest) [nums[i], nums[lowest]] = [nums[lowest], nums[i]];
+  }
+  return nums;
+};
+
+console.log(selectionSort(arr));
