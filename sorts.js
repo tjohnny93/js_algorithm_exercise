@@ -1,4 +1,5 @@
-let arr = [1, 5, 6, 8, 7, 2, 3, 4];
+// let arr = [1, 5, 6, 8, 7, 2, 3, 4];
+let arr = [1, 8, 6, 5, 2, 9, 12, 10, 3];
 
 // bubbleSort: compare each pair then move larger value to the back
 // since its nested time complexity will be O(n^2)
@@ -100,4 +101,45 @@ const mergeSort = (nums) => {
   return merge(left, right);
 };
 
-console.log(mergeSort(arr));
+// console.log(mergeSort(arr));
+
+// quickSort: picks pivot then seperate other nums to left if smaller right if bigger. recursion till its length hits 1 then combine it all together in order [left pivot right]
+
+const pivot = (nums, start = 0, end = nums.length - 1) => {
+  let piv = nums[start];
+  let swapIdx = start;
+  for (let i = start + 1; i <= end; i++) {
+    if (piv > nums[i]) {
+      swapIdx++;
+      [nums[swapIdx], nums[i]] = [nums[i], nums[swapIdx]];
+    }
+  }
+  [nums[start], nums[swapIdx]] = [nums[swapIdx], nums[start]];
+  return swapIdx;
+};
+
+const quickSort = (nums, left = 0, right = nums.length - 1) => {
+  if (left < right) {
+    let pivotIndex = pivot(nums, left, right);
+    quickSort(nums, left, pivotIndex - 1);
+    quickSort(nums, pivotIndex + 1, right);
+  }
+  return nums;
+};
+
+// console.log(quickSort(arr));
+
+const simpleQuickSort = (nums) => {
+  if (nums.length <= 1) return nums;
+
+  let pivot = nums[nums.length - 1],
+    left = [],
+    right = [];
+  for (const num of nums.slice(0, nums.length - 1)) {
+    pivot >= num ? left.push(num) : right.push(num);
+  }
+
+  return [...simpleQuickSort(left), pivot, ...simpleQuickSort(right)];
+};
+
+console.log(simpleQuickSort(arr));
