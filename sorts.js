@@ -4,8 +4,8 @@ let arr = [1, 8, 6, 5, 2, 9, 12, 10, 3];
 // bubbleSort: compare each pair then move larger value to the back
 // since its nested time complexity will be O(n^2)
 const bubbleSort = (nums) => {
-  let sorted = true; // ++ optimization to skip unneceesary looping (after everything is sorted);
   for (let i = nums.length; i > 0; i--) {
+    let sorted = true; // ++ optimization to skip unneceesary looping (after everything is sorted);
     // reason why i is starting from the length of the array and descending is to remove the unnecessary repeated check even after larger num is sorted
     for (let j = 0; j < i - 1; j++) {
       if (nums[j] > nums[j + 1]) {
@@ -104,6 +104,8 @@ const mergeSort = (nums) => {
 // console.log(mergeSort(arr));
 
 // quickSort: picks pivot then seperate other nums to left if smaller right if bigger. recursion till its length hits 1 then combine it all together in order [left pivot right]
+// time complexity: Worst case O(n^2), average & best case => O(n log n);
+// space complexity: O(log n);
 
 const pivot = (nums, start = 0, end = nums.length - 1) => {
   let piv = nums[start];
