@@ -396,3 +396,114 @@ var sumZero = function (n) {
   }
   return result;
 };
+
+/*
+A permutation perm of n + 1 integers of all the integers in the range [0, n] can be represented as a string s of length n where:
+
+s[i] == 'I' if perm[i] < perm[i + 1], and
+s[i] == 'D' if perm[i] > perm[i + 1].
+Given a string s, reconstruct the permutation perm and return it. If there are multiple valid permutations perm, return any of them.
+
+Example 1:
+
+Input: s = "IDID"
+Output: [0,4,1,3,2]
+Example 2:
+
+Input: s = "III"
+Output: [0,1,2,3]
+Example 3:
+
+Input: s = "DDI"
+Output: [3,2,0,1]
+*/
+
+var diStringMatch = function (s) {
+  let result = [];
+  let min = 0;
+  let max = s.length;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "I") {
+      result.push(min);
+      min++;
+    } else {
+      result.push(max);
+      max--;
+    }
+  }
+  result.push(max);
+
+  return result;
+};
+
+/*
+
+You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+
+Return the merged string.
+
+Example 1:
+
+Input: word1 = "abc", word2 = "pqr"
+Output: "apbqcr"
+Explanation: The merged string will be merged as so:
+word1:  a   b   c
+word2:    p   q   r
+merged: a p b q c r
+Example 2:
+
+Input: word1 = "ab", word2 = "pqrs"
+Output: "apbqrs"
+Explanation: Notice that as word2 is longer, "rs" is appended to the end.
+word1:  a   b 
+word2:    p   q   r   s
+merged: a p b q   r   s
+Example 3:
+
+Input: word1 = "abcd", word2 = "pq"
+Output: "apbqcd"
+Explanation: Notice that as word1 is longer, "cd" is appended to the end.
+word1:  a   b   c   d
+word2:    p   q 
+merged: a p b q c   d
+*/
+
+var mergeAlternately = function (word1, word2) {
+  let result = "";
+  let longerStr, shorterStr;
+  if (word1.length > word2.length) {
+    longerStr = word1;
+    shorterStr = word2;
+  } else {
+    longerStr = word2;
+    shorterStr = word1;
+  }
+  for (let i = 0; i < shorterStr.length; i++) {
+    result += word1[i] + word2[i];
+  }
+  result += longerStr.slice(shorterStr.length);
+  return result;
+};
+
+/*
+
+Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+Example 1:
+
+Input: s = "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+Example 2:
+
+Input: s = "God Ding"
+Output: "doG gniD"
+*/
+
+var reverseWords = function (s) {
+  let arr = s.split(" ");
+  return arr
+    .map((word) => {
+      return word.split("").reverse().join("");
+    })
+    .join(" ");
+};
