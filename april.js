@@ -507,3 +507,76 @@ var reverseWords = function (s) {
     })
     .join(" ");
 };
+
+/*
+You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path going from cityAi to cityBi. Return the destination city, that is, the city without any path outgoing to another city.
+
+It is guaranteed that the graph of paths forms a line without any loop, therefore, there will be exactly one destination city.
+Example 1:
+
+Input: paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]
+Output: "Sao Paulo" 
+Explanation: Starting at "London" city you will reach "Sao Paulo" city which is the destination city. Your trip consist of: "London" -> "New York" -> "Lima" -> "Sao Paulo".
+Example 2:
+
+Input: paths = [["B","C"],["D","B"],["C","A"]]
+Output: "A"
+Explanation: All possible trips are: 
+"D" -> "B" -> "C" -> "A". 
+"B" -> "C" -> "A". 
+"C" -> "A". 
+"A". 
+Clearly the destination city is "A".
+Example 3:
+
+Input: paths = [["A","Z"]]
+Output: "Z"
+
+*/
+
+var destCity = function (paths) {
+  // let places = {};
+  // for (let i = 0; i < paths.length; i++) {
+  //   for (let j = paths[i].length-1; j >= 0; j--) {
+  //     places[paths[i][j]] ? places[paths[i][j]] += 1 : places[paths[i][j]] = 1
+  //   }
+  // }
+  // let unique = Object.entries(places).filter(pair => pair[1] === 1)
+  // let result
+  //   for (let i = 0; i < paths.length; i++) {
+  //     unique.forEach(el => {
+  //       if (el[0] === paths[i][1]) result = el[0];
+  //     })
+  //   }
+  // return result
+  let dest = paths[0][1];
+  while (true) {
+    const newDest = paths.find((path) => path[0] === dest);
+    if (!newDest) return dest;
+    dest = newDest[1];
+  }
+};
+
+/*
+Given an integer n (in base 10) and a base k, return the sum of the digits of n after converting n from base 10 to base k.
+
+After converting, each digit should be interpreted as a base 10 number, and the sum should be returned in base 10.
+Example 1:
+
+Input: n = 34, k = 6
+Output: 9
+Explanation: 34 (base 10) expressed in base 6 is 54. 5 + 4 = 9.
+Example 2:
+
+Input: n = 10, k = 10
+Output: 1
+Explanation: n is already in base 10. 1 + 0 = 1.
+ 
+*/
+
+var sumBase = function (n, k) {
+  let res = n.toString(k); // .toString(input) with this I can convert n from base 10 to base input;
+  let sum = 0;
+  for (const e of res) sum += Number(e);
+  return sum;
+};
