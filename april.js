@@ -580,3 +580,61 @@ var sumBase = function (n, k) {
   for (const e of res) sum += Number(e);
   return sum;
 };
+
+/*
+Given an array of integers nums, half of the integers in nums are odd, and the other half are even.
+
+Sort the array so that whenever nums[i] is odd, i is odd, and whenever nums[i] is even, i is even.
+
+Return any answer array that satisfies this condition.
+Example 1:
+
+Input: nums = [4,2,5,7]
+Output: [4,5,2,7]
+Explanation: [4,7,2,5], [2,5,4,7], [2,7,4,5] would also have been accepted.
+Example 2:
+
+Input: nums = [2,3]
+Output: [2,3]
+*/
+
+var sortArrayByParityII = function (nums) {
+  let result = [];
+  let even = [];
+  let odd = [];
+  for (let i = 0; i < nums.length; i++) {
+    nums[i] % 2 === 0 ? even.push(nums[i]) : odd.push(nums[i]);
+  }
+  while (result.length !== nums.length) {
+    result.push(even.pop());
+    result.push(odd.pop());
+  }
+  return result;
+};
+
+/*
+Write a function that reverses a string. The input string is given as an array of characters s.
+Example 1:
+
+Input: s = ["h","e","l","l","o"]
+Output: ["o","l","l","e","h"]
+Example 2:
+
+Input: s = ["H","a","n","n","a","h"]
+Output: ["h","a","n","n","a","H"]
+ 
+
+Constraints:
+
+1 <= s.length <= 105
+s[i] is a printable ascii character.
+ 
+
+Follow up: Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+*/
+
+var reverseString = function (s) {
+  for (let i = 0; i < s.length / 2; i++) {
+    [s[i], s[s.length - 1 - i]] = [s[s.length - 1 - i], s[i]];
+  }
+};
