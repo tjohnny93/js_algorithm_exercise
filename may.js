@@ -119,3 +119,52 @@ var numUniqueEmails = function (emails) {
   }
   return result.length;
 };
+
+/*
+Given an array of integers nums, sort the array in increasing order based on the frequency of the values. If multiple values have the same frequency, sort them in decreasing order.
+Return the sorted array.
+
+Input: nums = [1,1,2,2,2,3]
+Output: [3,1,1,2,2,2]
+Explanation: '3' has a frequency of 1, '1' has a frequency of 2, and '2' has a frequency of 3.
+
+Input: nums = [2,3,1,3,2]
+Output: [1,3,3,2,2]
+Explanation: '2' and '3' both have a frequency of 2, so they are sorted in decreasing order.
+
+Input: nums = [-1,1,-6,4,5,-6,1,4,1]
+Output: [5,-1,4,4,-6,-6,1,1,1]
+*/
+
+var frequencySort = function (nums) {
+  const map = new Map();
+  for (let n of nums) {
+    map.set(n, map.get(n) + 1 || 1);
+  }
+  return nums.sort((a, b) => map.get(a) - map.get(b) || b - a);
+};
+
+/*
+Given an integer array arr, return true if there are three consecutive odd numbers in the array. Otherwise, return false.
+
+Example 1:
+
+Input: arr = [2,6,4,1]
+Output: false
+Explanation: There are no three consecutive odds.
+Example 2:
+
+Input: arr = [1,2,34,3,4,5,7,23,12]
+Output: true
+Explanation: [5,7,23] are three consecutive odds.
+*/
+
+var threeConsecutiveOdds = function (arr) {
+  let result = false;
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] % 2 === 1 ? (count += 1) : (count = 0);
+    if (count === 3) result = true;
+  }
+  return result;
+};
