@@ -168,3 +168,59 @@ var threeConsecutiveOdds = function (arr) {
   }
   return result;
 };
+
+/*
+A self-dividing number is a number that is divisible by every digit it contains.
+
+For example, 128 is a self-dividing number because 128 % 1 == 0, 128 % 2 == 0, and 128 % 8 == 0.
+
+Also, a self-dividing number is not allowed to contain the digit zero.
+
+Given a lower and upper number bound, output a list of every possible self dividing number, including the bounds if possible.
+
+Example 1:
+Input: 
+left = 1, right = 22
+Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
+*/
+
+const divideable = (num) => {
+  let result = true;
+  let str = num.toString();
+  if (str.length > 1) {
+    for (let i = 0; i < str.length; i++) {
+      if (num % +str[i] !== 0) result = false;
+    }
+  }
+  return result;
+};
+
+var selfDividingNumbers = function (left, right) {
+  let result = [];
+  for (let i = left; i <= right; i++) {
+    if (divideable(i)) result.push(i);
+  }
+  return result;
+};
+
+/*
+Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+
+ 
+
+Example 1:
+
+Input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+Explanation: After squaring, the array becomes [16,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
+Example 2:
+
+Input: nums = [-7,-3,2,3,11]
+Output: [4,9,9,49,121]
+
+*/
+
+var sortedSquares = function (nums) {
+  return nums.map((num) => num * num).sort((a, b) => a - b);
+};
