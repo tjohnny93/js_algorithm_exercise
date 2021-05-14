@@ -145,3 +145,16 @@ const simpleQuickSort = (nums) => {
 };
 
 console.log(simpleQuickSort(arr));
+
+//binary search
+
+const binarySearch = (nums, target) => {
+  if (nums.length === 0) return -1; //base case
+  let mid = Math.floor(nums.length / 2);
+  if (nums[mid] > target) return binarySearch(nums.slice(0, mid), target);
+  if (nums[mid] < target) {
+    let result = binarySearch(nums.slice(mid + 1), target);
+    return result === -1 ? -1 : output + mid + 1;
+  }
+  return mid;
+};
