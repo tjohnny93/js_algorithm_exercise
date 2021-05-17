@@ -224,3 +224,74 @@ Output: [4,9,9,49,121]
 var sortedSquares = function (nums) {
   return nums.map((num) => num * num).sort((a, b) => a - b);
 };
+
+/* may 17th
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+Example 1:
+
+Input: nums = [2,2,1]
+Output: 1
+Example 2:
+
+Input: nums = [4,1,2,1,2]
+Output: 4
+Example 3:
+
+Input: nums = [1]
+Output: 1
+*/
+
+var singleNumber = function (nums) {
+  let count = {};
+  for (let i = 0; i < nums.length; i++) {
+    count[nums[i]] ? (count[nums[i]] += 1) : (count[nums[i]] = 1);
+  }
+  let countArr = Object.entries(count);
+  for (let i = 0; i < countArr.length; i++) {
+    if (countArr[i][1] === 1) return countArr[i][0];
+  }
+};
+
+//leetcode answer using Set
+function singleNumber(nums) {
+  const memo = new Set();
+
+  for (let num of nums) {
+    if (memo.has(num)) {
+      memo.delete(num);
+    } else {
+      memo.add(num);
+    }
+  }
+
+  return [...memo][0];
+}
+
+/* may 17th
+Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
+
+Example 1:
+
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2]
+Example 2:
+
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [9,4]
+Explanation: [4,9] is also accepted.
+*/
+
+var intersection = function (nums1, nums2) {
+  let result = [];
+
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2.includes(nums1[i])) {
+      if (!result.includes(nums1[i])) result.push(nums1[i]);
+    }
+  }
+
+  return result;
+};
